@@ -1,11 +1,11 @@
 import React from "react";
 
-function Searchbar(props) {
+function Searchbar({onGetSearchResults}) {
     
     return (
         <>
             <input type="text" className="songSearchInput"></input>
-            <button className="songSearchButton" onClick={props.populateSearchResults}>Search</button>
+            <button className="songSearchButton" onClick={onGetSearchResults}>Search</button>
         </>
     )
 }
