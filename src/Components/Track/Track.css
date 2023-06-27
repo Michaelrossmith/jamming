@@ -1,0 +1,32 @@
+.track-details > * {
+    margin: 2px;
+    text-align: left;
+}
+
+.track-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.track-details {
+    margin: 10px 50px;
+}
+
+.track-name {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.artist-name {
+    font-size: 14px;
+}
+
+.album-name {
+    font-size: 14px;
+}
+
+.add-to-playlist-button {
+    background-color: transparent;
+    border: none;
+}
+

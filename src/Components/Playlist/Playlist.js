@@ -1,11 +1,13 @@
 import React from "react";
+import './Playlist.css'
 
-function Playlist() {
-    
+function Playlist({onChangePlaylistName, showPlaylist}) {
+
     return (
-        <>
-            <button>Save to Spotify</button>
-        </>
+        <div className="playlist">
+            <input type="text" onBlur={onChangePlaylistName} placeholder="Playlist Name"></input>
+            <div className="playlist-track">{showPlaylist()}</div>
+        </div>
     )
 }
 
