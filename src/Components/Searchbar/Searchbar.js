@@ -1,11 +1,11 @@
 import React from "react";
 
-function Searchbar({onGetSearchResults}) {
+function Searchbar({searchTracks}) {
     
     return (
         <>
             <input type="text" className="songSearchInput"></input>
-            <button className="songSearchButton" onClick={onGetSearchResults}>Search</button>
+            <button className="songSearchButton" onClick={searchTracks}>Search</button>
         </>
     )
 }
