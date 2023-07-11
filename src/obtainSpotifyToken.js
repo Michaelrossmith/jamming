@@ -12,10 +12,11 @@ const getURL = () => {
     url += '&redirect_uri=' + encodeURIComponent(redirect_uri);
     
     window.location = url;
+    return url
 }
 
-const buildAccessData = () => {
-    const urlString = window.location.href.split('#')
+const buildAccessData = async (getURL, setUserToken) => {
+    const urlString = await getURL().href.split('#')
     const queryString = urlString[1]
 
     const urlParams = new URLSearchParams(queryString)
@@ -26,7 +27,7 @@ const buildAccessData = () => {
         expiresIn: urlParams.get('expires_in')
     }
 
-    return accessData;
+    return (setUserToken(accessData.accessToken));
 }
 
 export {getURL, buildAccessData};

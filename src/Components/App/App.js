@@ -1,21 +1,21 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
+import axios from 'axios'
 import './App.css';
 import Track from '../Track/Track'
 import Searchbar from '../Searchbar/Searchbar';
 import SearchResults from '../SearchResults/SearchResults';
 import Playlist from '../Playlist/Playlist';
-import trackResultList from '../../TrackResultList';
 import {getURL, buildAccessData} from '../../obtainSpotifyToken'
 
 function App() {
-  
-  buildAccessData();
 
   const [trackList, setTrackList] = useState([])
   const [playlist, setPlaylist] = useState([])
   const [playlistURIs, setPlaylistURIs] = useState([])
-  const [playlistName, setPlaylistName] = useState("")
-
+  const [playlistName, setPlaylistName] = useState('')
+  const [userToken, setUserToken] = useState('')
+  const [searchKey, setSearchKey] = useState('')
+  
   function handleAddTrackToPlaylist(track) {
     setPlaylist(oldArray => [...oldArray, track])
   }
@@ -36,10 +36,6 @@ function App() {
     setPlaylistName(event.target.value)
   }
 
-  function handleGetSearchResults() {
-    setTrackList(trackResultList)
-  }
-
   function showSearchResults() {
     return (
         trackList.map(track => {
@@ -48,6 +44,27 @@ function App() {
           )
         })
     )
+  }
+  
+  const logIn = () => {
+    buildAccessData(getURL, setUserToken)
+  }
+
+  const searchTracks = async (e) => {
+    e.preventDefault()
+    const {data} = await axios.get("https://api.spotify.com/v1/search?", {
+      headers: {
+        Authorization: `Bearer ${userToken}`
+      }, 
+      params: {
+        q: searchKey,
+        type: 'track'
+      }
+    })
+
+    setTrackList(data.tracks.items)
+    console.log(trackList)
+    
   }
   
   function showPlaylist() {
@@ -68,8 +85,9 @@ function App() {
     <div className="App">
       <header className="App-header">
         <h1>Jamming</h1>
-        <button onClick={getURL}>Log in</button>
-        <Searchbar onGetSearchResults={handleGetSearchResults}/>
+        <button className='login-button' onClick={logIn}>Log in</button>
+        <Searchbar />
+        <button className="songSearchButton" onClick={searchTracks}>Search</button>
         <div className='playlist-container'>
           <SearchResults showSearchResults={showSearchResults}/>
           <Playlist 
