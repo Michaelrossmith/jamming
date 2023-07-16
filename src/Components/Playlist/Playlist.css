@@ -2,6 +2,7 @@
     background-color: #50298a;
     min-width: 300px;
     min-height: 400px;
+    max-height: 800px;
 }
 
 .playlist input {

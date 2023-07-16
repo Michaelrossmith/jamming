@@ -2,4 +2,6 @@
     min-height: 400px;
     min-width: 300px;
     background-color: #50298a;
+    max-height: 800px;
+    overflow: scroll;
 }

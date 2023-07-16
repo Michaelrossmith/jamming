@@ -4,7 +4,6 @@ function Searchbar() {
     
     return (
         <>
-            <input type="text" className="songSearchInput"></input>
             
         </>
     )

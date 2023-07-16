@@ -13,8 +13,8 @@ function Track({track,
             <div className="track-container">
             <div className="track-details">
                 <h4 className="track-name">{track.name}</h4>
-                <p className="artist-name">{track.artist}</p>
-                <p className="album-name">{track.album}</p>
+                <p className="artist-name">{track.artists[0].name}</p>
+                <p className="album-name">{track.album.name}</p>
             </div>
                 <button className="add-to-playlist-button" 
                 onClick={() => {
